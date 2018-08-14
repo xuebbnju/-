@@ -7,5 +7,7 @@ module.exports = function(req, res, next){
             code: 401,
             msg: "授权已经过期，请重新登陆"
         });
+    }else{
+        next()
     }
 }

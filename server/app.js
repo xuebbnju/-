@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var router = require('./routes/index');
-
-
+//"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe"  --dbpath "C:\Program Files\MongoDB\Server\4.0\data\db"
+//"C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe"
 var app = express();
 mongoose.connect('mongodb://localhost:27017/blog', { useNewUrlParser: true } )
 // view engine setup

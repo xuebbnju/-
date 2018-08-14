@@ -4,7 +4,7 @@ var Models = require('../Models');
 createToken = require('../middleware/createToken');
 checkToken = require('../middleware/checkToken');
 /* GET users listing. */
-router.post('/post', function(req, res, next) {
+router.post('/register', function(req, res, next) {
     var user = req.body;
     Models.User.findUserByName(user.username, function(err, users){
         if(err){
@@ -14,17 +14,24 @@ router.post('/post', function(req, res, next) {
                 msg: err
             });
         }
-        if(!users){
+        if(users.length == 0){
              var _user = new Models.User(user);
-             _user.save();
-             return res.json({
-                code: 200,
-                msg: '注册成功',
-                token: createToken(user.username)
-            });
+             _user.save(function(err){
+                 if(err){
+                     console.log(err);
+                 }else{
+                    console.log('成功');
+                    return res.json({
+                        code: 200,
+                        msg: '注册成功',
+                        token: createToken(user.username),
+                        user: user
+                    });
+                 }
+             });
         }else{
            return res.json({
-               code: -200,
+               code: 201,
                msg: '用户名已存在'
            });
         }
@@ -32,6 +39,7 @@ router.post('/post', function(req, res, next) {
 });
 router.post('/login', function(req, res, next) {
     var user = req.body;
+    console.log(user)
     Models.User.findUserByName(user.username, function(err, users){
         if(err){
             console.log(err);
@@ -40,17 +48,18 @@ router.post('/login', function(req, res, next) {
                 msg: err
             });
         }
-        if(!users){
+        if(users.length == 0){
             return res.json({
-                code: -200,
-                msg: '用户已存在'
+                code: 201,
+                msg: '用户不存在'
             });
         }else{
-           if(user.password === users.password){
+           if(user.password == users[0].password){
                 return res.json({
                     code: 200,
                     msg: '登陆成功',
-                    token: createToken(user.username)
+                    token: createToken(user.username),
+                    user: user
                 });
            }else{
             return res.json({

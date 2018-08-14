@@ -4,7 +4,7 @@ var classifySchema = require("../Schema/classify");
 var userSchema = require("../Schema/user.js");
 
 const Models = {
-    User: mongoose.model('User', userSchema),
+    User: mongoose.model('user', userSchema),
     Blog: mongoose.model('blog', blogSchema),
     classify: mongoose.model('classify', classifySchema)
 }

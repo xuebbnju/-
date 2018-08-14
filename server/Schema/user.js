@@ -2,20 +2,23 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    userName: String,
-    passWord: String,
-    gender: String
-
+    username: String,
+    password: String
 });
-
-userSchema.static = {
+userSchema.pre("save",function(next){
+    if(this.isNew){
+        this.createAt=Date.now();
+    }
+    next();
+});
+userSchema.statics = {
     findAllUser: function(){
         return this.find()
                    .sort({_id:-1})
                    .exec();
     },
     findUserByName: function(name, cb){
-        return this.find({"userName": name})
+        return this.find({"username": name})
                 .exec(cb);
     }
 

@@ -2,10 +2,6 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var blogSchema = new Schema({
-    classify: {
-        type: String,
-        default: ''
-    },
     title: String,
     content: String,
     author: String,
@@ -16,7 +12,7 @@ var blogSchema = new Schema({
 
 });
 
-blogSchema.static = {
+blogSchema.statics = {
     findAllBlogs: function(){
         return this.find()
                    .sort({_id:-1})
@@ -46,8 +42,8 @@ blogSchema.static = {
         return this.remove({_id: postId})
                    .exec(cb);
     },
-    updateOneBlog: function(postId, data){
-        return this.update({_id: postId}, {$set:data}).exec();
+    updateOneBlog: function(postId, data, cb){
+        return this.update({_id: postId}, {$set:data}).exec(cb);
     }
 
 

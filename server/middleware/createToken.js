@@ -7,4 +7,5 @@ module.exports = function (username){
          username: username,
          exp: parseInt(expiry.getTime()/1000)
     }, "1014");
+    return token;
 }
