@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var blogSchema = new Schema({
     title: String,
     content: String,
-    author: String,
     abstract: String,
+    author: String,
     date: {
         type: Date,
         default: Date.now()

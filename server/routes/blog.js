@@ -44,8 +44,8 @@ router.post('/getByClass',checkToken, function(req, res, next) {
                 let temp = {
                     title: item.title,
                     content: item.content,
-                    abstract: item.abstract,
                     date: item.date,
+                    abstract: item.abstract,
                     postId: item._id
                 }
                 blogList.push(temp);
@@ -74,8 +74,8 @@ router.post('/getByAuthor',checkToken, function(req, res, next) {
                 let temp = {
                     title: item.title,
                     content: item.content,
-                    date: item.date,
                     abstract: item.abstract,
+                    date: item.date,
                     postId: item. _id
                 }
                 blogList.push(temp);
