@@ -19,7 +19,6 @@ export default {
     return axios.post(root + '/api/user/login', data)
   },
   getUserBlogList(data){
-    console.log(data);
     return instance.post(root + '/api/blog/getByAuthor', data)
   },
   getBlogDetail(data){

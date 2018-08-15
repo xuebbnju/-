@@ -12,11 +12,11 @@ export default {
           commit('USER_REG', data)
           router.replace({path: '/home'})
         }else{
-          AlertMsg(res.data.msg)
+          AlertMsg.ErrAlert(res.data.msg)
         }
       })
       .catch((err)=>{
-        AlertMsg(err.msg || err.toString())
+        AlertMsg.ErrAlert(err.data.msg || err.toString())
       })
   },
   UserLogin ({commit}, data) {
@@ -29,11 +29,11 @@ export default {
           commit('USER_LOGIN', data)
           router.replace({path: '/home'})
         }else{
-          AlertMsg(res.data.msg)
+          AlertMsg.ErrAlert(res.data.msg)
         }
       })
       .catch((err)=>{
-        AlertMsg(err.data.msg || err.toString())
+        AlertMsg.ErrAlert(err.data.msg || err.toString())
       })
   },
   UserLogout ({commit}) {

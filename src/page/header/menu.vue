@@ -51,16 +51,16 @@ export default {
    watch: {
     '$route' (to, from) {
       let name = to.name;
-      console.log(name);
-      if (name === 'Home') {
-        this.activeIndex = '1'
+      this.activeIndex = '1'
+      if( name === 'Home'){
+
       } else if(name === "User"){
         this.activeIndex = '5'
       } else if(name === "BlogPost") {
         this.activeIndex = '4'
       } else {
         this.activeIndex = '2'
-      }
+      } 
     }
   },
   methods: {

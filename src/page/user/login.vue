@@ -16,6 +16,7 @@
 </template>
 <script >
 import {mapActions} from 'vuex'
+import AlertMsg from '../../store/AlertMsg'
 export default {
   name: 'Detail',
   data () {
@@ -54,10 +55,9 @@ export default {
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(1)
           this.UserLogin(this.user)
         } else {
-          console.log('error submit!!')
+          AlertMsg.ErrAlert('error submit!!')
           return false
         }
       })

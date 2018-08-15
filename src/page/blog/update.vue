@@ -6,6 +6,9 @@
                 <el-col :span="6"><el-button type="primary" @click="updateBlog">发布博客</el-button></el-col>
             </el-row>
         </div>
+        <div class="blog-abstract">
+          <el-input v-model="blog.abstract" placeholder="摘要"></el-input>
+        </div>
         <div class="blog-content">
             <mavon-editor v-model="blog.content"/>
         </div>
@@ -24,17 +27,21 @@ export default {
   },
   methods: {
     updateBlog () {
+        if(!this.blog.title || !this.blog.abstract || !this.blog.content){
+          AlertMsg.WarnAlert('请填写完整再发布！')
+          return ;
+        }
         api.updateBlog(this.blog)
           .then((res) => {
             if (res.data && res.data.code==200) {
-              AlertMsg('修改成功！')
+              AlertMsg.SuccAlert('修改成功！')
               router.push({name: 'BlogDetail', params: {postId: this.postId}})
             } else {
-              AlertMsg(res.data.msg);
+              AlertMsg.ErrAlert(res.data.msg);
             }
           })
           .catch((err)=>{
-            AlertMsg(err.msg || err.toString())
+            AlertMsg.ErrAlert(err.msg || err.toString())
           })
     }
   },
@@ -51,11 +58,11 @@ export default {
           let data = res.data
           this.blog = data.blog
         } else {
-          AlertMsg(res.data.msg)
+          AlertMsg.ErrAlert(res.data.msg)
         }
       })
       .catch((err)=>{
-        AlertMsg(err.msg || err.toString());
+        AlertMsg.ErrAlert(err.msg || err.toString());
       })
   }
 }
@@ -67,7 +74,9 @@ export default {
     -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
 }
-
+.blog-abstract{
+  margin-top: 20px;
+}
 .blog-content{
   border-top: 1px solid #e0e0e0;
   margin: 20px 0;

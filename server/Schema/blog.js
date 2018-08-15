@@ -5,6 +5,7 @@ var blogSchema = new Schema({
     title: String,
     content: String,
     author: String,
+    abstract: String,
     date: {
         type: Date,
         default: Date.now()

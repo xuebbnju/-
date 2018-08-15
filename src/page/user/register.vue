@@ -19,6 +19,7 @@
 </template>
 <script >
 import {mapActions} from 'vuex'
+import AlertMsg from '../../store/AlertMsg'
 export default {
   name: 'Detail',
   data () {
@@ -76,7 +77,7 @@ export default {
           delete this.user.checkPass
           this.UserReg(this.user)
         } else {
-          console.log('error submit!!')
+          AlertMsg.ErrAlert('error submit!!')
           return false
         }
       })

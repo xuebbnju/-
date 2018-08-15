@@ -42,10 +42,11 @@ router.post('/getByClass',checkToken, function(req, res, next) {
             let blogList = [];
             blogs.forEach(function(item){
                 let temp = {
-                    title: blogs.title,
-                    content: blog.content,
-                    date: blog.date,
-                    postId: _id
+                    title: item.title,
+                    content: item.content,
+                    abstract: item.abstract,
+                    date: item.date,
+                    postId: item._id
                 }
                 blogList.push(temp);
             });
@@ -60,7 +61,6 @@ router.post('/getByClass',checkToken, function(req, res, next) {
 });
 router.post('/getByAuthor',checkToken, function(req, res, next) {
     let author = req.body.username;
-    console.log(req.body)
     Models.Blog.findBlogByAuthor(author, function(err, blogs){
         if(err){
             console.log(err);
@@ -75,6 +75,7 @@ router.post('/getByAuthor',checkToken, function(req, res, next) {
                     title: item.title,
                     content: item.content,
                     date: item.date,
+                    abstract: item.abstract,
                     postId: item. _id
                 }
                 blogList.push(temp);

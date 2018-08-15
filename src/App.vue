@@ -3,7 +3,7 @@
     <Menu></Menu>
     <div class="menu-fix"></div>
     <div class="wrapper">
-      <div class="height-fix"><router-view/></div>
+       <router-view/>
     </div>
     <Footer></Footer>
   </div>
@@ -34,15 +34,13 @@ export default {
   width: 70%;
   margin: 0 auto;
 }
-.height-fix{
-  min-height: 600px;
-}
 .menu-fix{
   height: 60px;
   width: 100%;
 }
-.page{
+.body{
   background: #f5f6f7;
+  height: 100%;
 }
 
 </style>

@@ -2,7 +2,7 @@
 <div>
   <div class='home-img'>
    <div class='home-img-text'>
-     <span>记录美好从这里开始！</span>
+     记&nbsp;&nbsp;录&nbsp;&nbsp;美&nbsp;&nbsp;好&nbsp;&nbsp;从&nbsp;&nbsp;这&nbsp;&nbsp;里&nbsp;&nbsp;开&nbsp;&nbsp;始&nbsp;&nbsp;！
    </div>
 </div>
 <div class='blogs-box'>
@@ -10,7 +10,8 @@
           <div class='blog-title'>
             <router-link :to="{ name: 'BlogDetail', params: {postId: item.postId }}">{{item.title}}</router-link>
           </div>
-          <div class='blog-content' v-html="item.content" >
+          <div class='blog-abstract'  >
+            {{item.abstract}}
           </div>
           <div class='blog-info'>
             {{item.date}}
@@ -23,7 +24,6 @@
 import {mapState} from 'vuex'
 import api from '../api'
 import AlertMsg from '../store/AlertMsg'
-import mavonEditor from 'mavon-editor'
 export default {
   name: 'Detail',
   data () {
@@ -42,17 +42,16 @@ export default {
           let data = res.data
           this.blogList = data.blogList
           this.blogList.forEach(function (item) {
-              item.content = mavonEditor.markdownIt.render(item.content)
               let date = item.date.split('')
               date.splice(10, 23, '')
               item.date = date.join('')
           });
         } else {
-          AlertMsg(res.data.msg)
+          AlertMsg.ErrAlert(res.data.msg)
        }
       })
       .catch((err) => {
-        AlertMsg(err.msg || err.toString())
+        AlertMsg.ErrAlert(err.msg || err.toString())
       })
   }
 }
@@ -71,10 +70,11 @@ export default {
     bottom: 0;
     width: 100%;
     height: 140px;
-    line-height: 140;
+    line-height: 140px;
     text-align: center;
-    color: #000;
-    background:rgba(255,255,255,0.3);
+    color: #f4f4f4;
+    font-size: 30px;
+    background:rgba(255,255,255,0.4);
 }
 .blog-item{
     padding: 18px 24px;
@@ -102,7 +102,7 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.blog-content{
+.blog-abstract{
   margin-bottom: 4px;
   font-size: 15px;
   color: #8a8a8a;
@@ -110,7 +110,7 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 24px;
-  height: 40px;
+  height: 24px;
   width: 100%;
 }
 

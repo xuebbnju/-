@@ -2,7 +2,7 @@
 <div class="manage-box">
   <el-table :data="blogList" stripe style="width: 100%">
     <el-table-column prop="date" label="日期" width="200"></el-table-column>
-    <el-table-column prop="title" label="标题" width="500"></el-table-column>
+    <el-table-column prop="title" label="标题" width="700"></el-table-column>
     <el-table-column label="操作" width="300">
       <template slot-scope="scope">
         <el-button
@@ -38,14 +38,14 @@ export default {
       api.deleteBlog({postId})
         .then((res) => {
           if (res.data && res.data.code === 200) {
-            AlertMsg('删除成功！')
+            AlertMsg.SuccAlert('删除成功！')
             router.go(0)
           } else {
-            AlertMsg(res.data.msg)
+            AlertMsg.ErrAlert(res.data.msg)
           }
         })
         .catch((err) => {
-          AlertMsg(err.msg || err.toString())
+          AlertMsg.ErrAlert(err.msg || err.toString())
         })
     }
   },
@@ -58,12 +58,17 @@ export default {
         if (res.data && res.data.code === 200) {
           let data = res.data
           this.blogList = data.blogList
+          this.blogList.forEach(function (item) {
+              let date = item.date.split('')
+              date.splice(10, 23, '')
+              item.date = date.join('')
+          })
         } else {
-          AlertMsg(res.data.msg)
+          AlertMsg.ErrAlert(res.data.msg)
         }
       })
       .catch((err) => {
-        AlertMsg(err.msg || err.toString())
+        AlertMsg.ErrAlert(err.msg || err.toString())
       })
   }
 }
