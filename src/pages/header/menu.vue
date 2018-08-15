@@ -52,15 +52,17 @@ export default {
     '$route' (to, from) {
       let name = to.name;
       this.activeIndex = '1'
-      if( name === 'Home'){
-
+      if( name === 'Home'  || name === "BlogDetail"){
+        this.activeIndex = '1'
       } else if(name === "User"){
         this.activeIndex = '5'
       } else if(name === "BlogPost") {
         this.activeIndex = '4'
-      } else {
+      } else if(name === "BlogManage"  || name === "BlogUpdate") {
         this.activeIndex = '2'
-      } 
+      } else {
+        this.activeIndex = '1'
+      }
     }
   },
   methods: {

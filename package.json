@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "dns": "^0.2.2",
     "element-ui": "^2.4.6",
     "markdown-it": "^8.4.2",
     "marked": "^0.4.0",

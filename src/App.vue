@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Menu from '@/page/header/menu.vue'
-import Footer from '@/page/footer/index.vue'
+import Menu from '@/pages/header/menu.vue'
+import Footer from '@/pages/footer/index.vue'
 export default {
   name: 'App',
   components: {

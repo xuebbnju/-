@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import UserLogin from '@/page/user/login'
-import UserReg from '@/page/user/register'
+import UserLogin from '@/pages/user/login'
+import UserReg from '@/pages/user/register'
 export default {
   name: 'App',
   components: {
